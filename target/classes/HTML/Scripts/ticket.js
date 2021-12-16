@@ -32,7 +32,7 @@ function displayResponse(response){
         responseSection.innerHTML = 'You are not logged in!';
     }else{
         responseSection.innerHTML = `<h1>Hello, ${response.first_name}!</h1>`;
-        getPending(response.emp);
+        getPending(response.email);
         //var apiURLP = '';
         //var apiURLC = '';
         /*if(response.id==='ADMIN'){
@@ -46,8 +46,17 @@ function displayResponse(response){
 }
 
 
-function getPending(emp) {
+function getPending(email) {
 
+    var apiURL = "http://localhost:7001/pending/" + email;
+    console.log(apiURL);
+    fetch(apiURL)
+        .then(responseP => responseP.json())
+        .then(json => displayPending(json, email))
+        .catch(err => console.log("Request Failed", err));
+}
+
+/*
     //retrieve pending tickets
     var xhttpP = new XMLHttpRequest();
     xhttpP.onreadystatechange = receivePending;
@@ -72,17 +81,22 @@ function getPending(emp) {
             pendingSection.innerHTML = 'I\'m thinking....'; 
         } 
     }
-}
+*/
 
 
-function displayPending(responseP) {
-	
+
+function displayPending(responseP, email) {
+	console.log(responseP);
+    console.log(responseP[1]);
+    console.log(responseP[1].purchased);
     dataSection = document.getElementById("pendingTix");
 
+    var head = document.createElement("h3");
+    head.innerHTML = "Pending";
+    dataSection.appendChild(head);
 
-
-    var headerArr = ["Ticket #","Submit Date","Purchase Date","Type","Amount","Employee","Status","Aprover ID","Receipt"];
-    var myArr = ["19284","2021/11/30","2021/11/26","GAS","$50.41","harrisca","PENDING","---","Receipt"];
+    var headerArr = ["Ticket #","Submit Date","Purchase Date","Type","Amount","Employee"];
+    //var headerArr = ["Ticket #","Submit Date","Purchase Date","Type","Amount","Employee","Status","Aprover ID","Receipt"];
 
     var table = document.createElement('table');
     var trh = document.createElement('tr');
@@ -97,19 +111,44 @@ function displayPending(responseP) {
 
     table.appendChild(trh);
 
-    for(let arr of myArr){
-        var tr = document.createElement('tr');
+    for(i=0 ; i < responseP.length ; i++){
+        console.log(responseP[i]);
+        var tr = document.createElement('tr');  
 
-        for(let word of arr){
-  
-            var td = document.createElement("td");
-            var tdText = document.createTextNode(word);
+        var td1 = document.createElement("td");
+        var td1Text = document.createTextNode(responseP[i].tixNum);
+        td1.appendChild(td1Text);
+        tr.appendChild(td1);
 
-            td.appendChild(tdText);
-            tr.appendChild(td);
-        }
-    
-    table.appendChild(tr);
+        var td2 = document.createElement("td");
+        var td2Text = document.createTextNode(responseP[i].submitted);
+        td2.appendChild(td2Text);
+        tr.appendChild(td2);
+
+        var td3 = document.createElement("td");
+        var td3Text = document.createTextNode(responseP[i].purchased);
+        td3.appendChild(td3Text);
+        tr.appendChild(td3);
+
+        var td4 = document.createElement("td");
+        var td4Text = document.createTextNode(responseP[i].category);
+        td4.appendChild(td4Text);
+        tr.appendChild(td4);
+
+        var td5 = document.createElement("td");
+        var td5Text = document.createTextNode(responseP[i].amt);
+        td5.appendChild(td5Text);
+        tr.appendChild(td5);
+
+        var td6 = document.createElement("td");
+        var td6Text = document.createTextNode(email);
+        td5.appendChild(td6Text);
+        tr.appendChild(td6);
+
+
+
+
+        table.appendChild(tr);
     }
     dataSection.appendChild(table);
 }
