@@ -34,10 +34,10 @@ public class MainDriver1 {
 			app.get("/login/{email}/{pswd}", HelloController.loginHandler);	
 			app.get("register.html/{firstName}/{lastName}/{email}/{pswd}/{birthday}", HelloController.registerHandler);
 			app.get("/whoisloggedin", HelloController.whoIsLoggedIn);
-		//	app.get("/ticketCenter.html", HelloController.getOneUserHandler);
 			app.get("/pending/{emp}", TicketController.getPendingHandler);
-		//	app.get("/ticketCenter.html/closed", TicketController.getClosedHandler);
-			app.post("newTix.html/{purchased}/{cat}/{amt}/{emp}", TicketController.addNewTix);
+			app.get("/completed/{emp}", TicketController.getCompletedHandler);
+			app.post("/newTix.html/{purchased}/{cat}/{amt}/{emp}", TicketController.addNewTix);
+			app.get("/logout", HelloController.logoutHandler);
 		//	app.post("ticketCenter.html/{tixNum}", TicketController.deleteTix);
 		//	app.post("ticketCenter.html/{tixNum}/{approver}/{stat}", TicketController.approveTix);
 			

@@ -7,10 +7,10 @@ var apiURL = '/register.html/';
 function getData() {  
     
     var firstName = document.getElementById('firstName').value; // my textboxes
-   var lastName = document.getElementById('lastName').value;
+    var lastName = document.getElementById('lastName').value;
     var email = document.getElementById('email').value;
 
-   var month = document.getElementById('month').value;
+    var month = document.getElementById('month').value;
     var day = document.getElementById('day').value;
     var year = document.getElementById('year').value;
     var birthday = year + '-' + month + '-' + day;

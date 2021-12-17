@@ -125,6 +125,10 @@ hr{
     padding: 1px 15px ;
    
   }
+
+  table{
+    padding: 0px 0px 20px 0px;
+  }
   #completedTix th{
     background-color: #cba;
   }

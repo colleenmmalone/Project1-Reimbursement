@@ -35,6 +35,15 @@ public class TicketController {
 		
 	};
 	
+	public static Handler getCompletedHandler = ctx->{
+		try(Connection conn = Connect2SQL.getConnection()){ 
+			TicketsDAO ticketsdao = new TicketsDAO(conn);
+			allTix = TicketsDAO.getClosed(ctx.pathParam("emp"));			
+			ctx.json(allTix);
+		}
+		
+	};
+	
 	
 
 

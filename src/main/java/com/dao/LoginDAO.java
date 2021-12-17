@@ -12,7 +12,7 @@ import com.model.LoginInfo;
 public class LoginDAO {
 	static Connection conn;
 	static String firstName, lastName, email, pswd, id;
-	static LoginInfo oneUser;
+	public static LoginInfo oneUser;
 
 	
 	public LoginDAO(Connection conn) {//constructor. input is connection to SQL
@@ -77,6 +77,11 @@ public class LoginDAO {
 	
 	public static LoginInfo getterOneUser() {
 		return oneUser;
+	}
+
+	public static void setNullUser() {
+		oneUser = new LoginInfo("null","null","null","null","null");
+		System.out.println(oneUser);
 	}
 
 }
