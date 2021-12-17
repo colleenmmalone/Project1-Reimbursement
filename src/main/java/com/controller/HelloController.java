@@ -68,8 +68,7 @@ public class HelloController {
 
 	public static Handler logoutHandler = ctx->{
 			LoginDAO.setNullUser();			
-			ctx.json(LoginDAO.oneUser);
-			
+			ctx.redirect("index.html");			
 	};
 
 
