@@ -8,6 +8,7 @@ import com.controller.HelloController;
 import com.controller.TicketController;
 import com.dao.LoginDAO;
 import com.dao.TicketsDAO;
+import com.model.LoginInfo;
 import com.util.Connect2SQL;
 
 import io.javalin.Javalin;
@@ -38,7 +39,9 @@ public class MainDriver1 {
 			app.get("/completed/{emp}", TicketController.getCompletedHandler);
 			app.post("/newTix.html/{purchased}/{cat}/{amt}/{emp}", TicketController.addNewTix);
 			app.get("/logout", HelloController.logoutHandler);
-			//app.post("/settings/personal/", TicketController.addNewTix);
+			app.post("/settings/personal/{emp}/{firstName}/{lastName}/{birthday}", HelloController.personalSettingsHandler);
+			//app.post("/settings/email/{emp}/{newEmail}", HelloController.emailSettingsHandler);
+			app.post("/settings/password/{emp}/{password}", HelloController.passwordSettingsHandler);
 			
 			
 		//	app.post("ticketCenter.html/{tixNum}", TicketController.deleteTix);
@@ -46,8 +49,10 @@ public class MainDriver1 {
 			
 //			Set<TicketsInfo> allTix = ticketsdao.getAllTickets();
 //			System.out.println(allTix);
-			
-		
+//			LoginDAO.oneUser = new LoginInfo("asf","asf","asf","asf","asf");
+//			logindao.updatePersonalSettings("admin", "Emma", "Watson", "1978-02-14");
+//			logindao.updatePasswordSettings("admin", "admin");
+//			System.out.println(LoginDAO.oneUser);
 			
 
 			

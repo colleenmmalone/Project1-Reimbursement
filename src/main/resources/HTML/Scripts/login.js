@@ -1,4 +1,5 @@
 var apiURL = '/login/'; // Endpoint you are sending a GET request to
+var dataSection = document.getElementById('infobar'); // my div
 
 document.getElementById('login').onclick = getData;
 
@@ -18,7 +19,7 @@ function getData() {
     // This needs to be an inner function so that it has closure to xhttp.
     function receiveData() {
 
-        var dataSection = document.getElementById('infobar'); // my div
+        
         dataSection.innerHTML = ''; //clear contents of div
 
          if (xhttp.readyState === 4) { //if done

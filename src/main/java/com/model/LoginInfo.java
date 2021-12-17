@@ -16,14 +16,14 @@ public class LoginInfo {
 		this.id = id;
 		this.birthday = birthday;
 	}
-	public LoginInfo(String first_name, String last_name, String email, String pswd, String id) {
-		super();
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.email = email;
-		this.pswd = pswd;
-		this.id = id;
-	}
+//	public LoginInfo(String first_name, String last_name, String email, String pswd, String id) {
+//		super();
+//		this.first_name = first_name;
+//		this.last_name = last_name;
+//		this.email = email;
+//		this.pswd = pswd;
+//		this.id = id;
+//	}
 	
 	public String getId() {
 		return id;
@@ -81,7 +81,7 @@ public class LoginInfo {
 		for(int i = 0; i < l ; i++ ) {
 			pswdS = pswdS + "*";
 		}
-		return "\nLogin Credentials: " + first_name + " " + last_name + ", " + email + " "+ pswdS;
+		return "\nLogin Credentials: " + first_name + " " + last_name + ", " + email + " "+birthday+" "+ pswdS;
 	}
 
 }

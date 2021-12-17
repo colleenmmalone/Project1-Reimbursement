@@ -70,6 +70,30 @@ public class HelloController {
 			LoginDAO.setNullUser();			
 			ctx.redirect("index.html");			
 	};
+	
+	public static Handler personalSettingsHandler = ctx->{
+		try(Connection conn = Connect2SQL.getConnection()){ 
+			LoginDAO logindao = new LoginDAO(conn);
+			logindao.updatePersonalSettings(ctx.pathParam("emp"), ctx.pathParam("firstName"),ctx.pathParam("lastName"),ctx.pathParam("birthday"));		
+		}
+		ctx.result("name and/or birthday updated");
+	};
+
+//	public static Handler emailSettingsHandler = ctx->{
+//		try(Connection conn = Connect2SQL.getConnection()){ 
+//			LoginDAO logindao = new LoginDAO(conn);
+//			logindao.updateEmailSettings(ctx.pathParam("emp"),	ctx.pathParam("newEmail"));		
+//		ctx.result("nothing happened");	
+//		}		
+//	};
+	
+	public static Handler passwordSettingsHandler = ctx->{
+		try(Connection conn = Connect2SQL.getConnection()){ 
+			LoginDAO logindao = new LoginDAO(conn);
+			logindao.updatePasswordSettings(ctx.pathParam("emp"), ctx.pathParam("password"));				
+		}	
+		ctx.result("password updated");
+	};
 
 
 }

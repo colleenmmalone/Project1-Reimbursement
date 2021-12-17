@@ -47,7 +47,7 @@ public class LoginDAO {
 		if(pswd.equals(oneUser.getPswd())) {
 			return oneUser; //return Set	 	
 		}else {
-			oneUser = new LoginInfo("null","null","null","null","null");
+			oneUser = new LoginInfo("null","null","null","null","null","null");
 			return oneUser;
 		}
 	}
@@ -70,7 +70,7 @@ public class LoginDAO {
 			oneUser = new LoginInfo(firstName, lastName, email, pswd, "EMPLOYEE", birthday);
 		}else {
 			System.out.println("A user with this email address already exists. Please login");
-			oneUser = new LoginInfo("null","null","null","null","null");
+			oneUser = new LoginInfo("null","null","null","null","null","null");
 		}
 		return oneUser;
 	}
@@ -80,8 +80,42 @@ public class LoginDAO {
 	}
 
 	public static void setNullUser() {
-		oneUser = new LoginInfo("null","null","null","null","null");
+		oneUser = new LoginInfo("null","null","null","null","null","null");
 		System.out.println(oneUser);
+	}
+
+	public void updatePersonalSettings(String emp, String firstName, String lastName, String birthday) throws Exception{
+		// "UPDATE logins SET birthday='2021-06-19', first_name='Maria', last_name='Blondie' WHERE email='emp4'";
+		// PreparedStatement statement = conn.prepareStatement("INSERT INTO logins (first_name, last_name, email, pswd, birthday, id) VALUES (?,?,?,?,?,?)");
+		PreparedStatement statement = conn.prepareStatement("UPDATE logins SET birthday=?, first_name=?, last_name=? WHERE email=?");
+		int parameterIndex=0;
+		statement.setString(++parameterIndex, birthday);
+		statement.setString(++parameterIndex, firstName);
+		statement.setString(++parameterIndex, lastName);
+		statement.setString(++parameterIndex, emp);
+		statement.executeUpdate();	
+		oneUser.setBirthday(birthday);
+		oneUser.setFirst_name(firstName);
+		oneUser.setLast_name(lastName);
+		System.out.println("personal settings were changed");
+		
+	}
+
+//	public void updateEmailSettings(String emp, String newEmail) throws Exception {
+//		// "UPDATE logins SET email='" + newEmail + "' WHERE email='" + emp +"'"
+//		System.out.println("personal settings not changed");
+//		
+//	}
+
+	public void updatePasswordSettings(String emp, String pswd) throws Exception {
+		PreparedStatement statement = conn.prepareStatement("UPDATE logins SET pswd=? WHERE email=?");
+		int parameterIndex=0;
+		statement.setString(++parameterIndex, pswd);
+		statement.setString(++parameterIndex, emp);
+		statement.executeUpdate();	
+		oneUser.setPswd(pswd);
+		System.out.println("password settings were changed");
+		
 	}
 
 }

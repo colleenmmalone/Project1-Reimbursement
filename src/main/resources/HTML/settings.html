@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
 </head>
-<body>
+<body onload="getUser()">
     <!-- Side navigation -->
     <div class="sidenav">
         <h3><img src="images/checkbook-white.png" style="width:45px;">Scribby</h3>
@@ -22,33 +22,32 @@
     <div class="main">
         <center><div id="logo"><img src="/images/checkbook.png" style="width:200px;">Scribby</div></center>
         <!--form to change name + birthday
-        settings.html/personal/{firstName}/{lastName}/{birthday}-->
+        settings./personal/{emp}/{firstName}/{lastName}/{birthday}-->
         <h1>Change User Settings</h1>
-        <h2>Hello, Carla!</h2>
-
+        <h2 id="intro"><!--Hello, Carla!--></h2>
         <hr>
-        <h3>Personal Settings</h3>
-        <p>Name&emsp;&emsp;&emsp;Carla Harris</p>
-        <p>Birthday&emsp;&emsp;May 6, 1981</p>
+        <div id="email">
+            <h3>Email </h3>
+        </div>
+                
+            
+        <hr>
+        <div id="personal">
+            <h3>Personal Settings</h3>
+        </div>
         <button class="edit" id="editPersonal">Edit</button>
-
-        <hr>
-
-        <!--form to change email
-        settings.html/email/{email}-->
-
-        <h3>Email Settings</h3>
-        <p>Contact&emsp;&ensp;&ensp;harrisca@scribby.com</p>
-        <button class="edit" id="editEmail">Edit</button>
+        <div id="personalUpdate"></div>
+        <div id="personalInfo"></div>
 
         <hr>
         <!--form to change password
-        settings.html/password/{pswd}-->
+        settings/password/{emp}/{pswd}-->
         <h3>Change Password</h3>
-        &emsp;&emsp;&emsp;&emsp;Old Password: <input type="password" label="Old Password" required><br><br>
-        &ensp;&emsp;&emsp;&emsp;New Password: <input type="password" id="newpswd" label="New Password" required><br>
-        Confirm New Password: <input type="password" id="confpswd" label="Confirm New Password" required><br>
+        &emsp;&emsp;&emsp;&emsp;Old Password: <input type="password" label="Old Password" id="oldP" required><br><br>
+        &ensp;&emsp;&emsp;&emsp;New Password: <input type="password" id="newP" label="New Password" required><br>
+        Confirm New Password: <input type="password" id="confP" label="Confirm New Password" required><br>
         <button class="edit" id="editPassword">Update</button>
+        <div id="emailResponse"></div>
         
 
        
@@ -60,5 +59,6 @@
     
 
 </div>
+<script src="/Scripts/settings.js"></script>
 </body>
 </html>
