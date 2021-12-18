@@ -56,6 +56,30 @@ public class TicketController {
 		}		
 	};
 	
+	public static Handler approveTixHandler = ctx->{
+		try(Connection conn = Connect2SQL.getConnection()){ 
+			TicketsDAO ticketsdao = new TicketsDAO(conn);
+			TicketsDAO.approveTix(ctx.pathParam("tixNum"),ctx.pathParam("emp"));			
+			ctx.result("performed successfully");
+		}		
+	};
+	
+	public static Handler denyTixHandler = ctx->{
+		try(Connection conn = Connect2SQL.getConnection()){ 
+			TicketsDAO ticketsdao = new TicketsDAO(conn);
+			TicketsDAO.denyTix(ctx.pathParam("tixNum"),ctx.pathParam("emp"));	
+			ctx.result("performed successfully");
+		}		
+	};
+	
+	public static Handler deleteTixHandler = ctx->{
+		try(Connection conn = Connect2SQL.getConnection()){ 
+			TicketsDAO ticketsdao = new TicketsDAO(conn);
+			TicketsDAO.deleteTix(ctx.pathParam("tixNum"),ctx.pathParam("emp"));		
+			ctx.result("performed successfully");
+		}		
+	};
+	
 	
 
 

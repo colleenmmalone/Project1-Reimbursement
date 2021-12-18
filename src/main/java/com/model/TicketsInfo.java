@@ -4,7 +4,15 @@ import java.util.Date;
 
 public class TicketsInfo {
 	int tixNum;
-	String category, employee, status, approver, submitted, purchased;
+	String category, emp, status, approver, submitted, purchased;
+	public String getEmp() {
+		return emp;
+	}
+
+	public void setEmp(String emp) {
+		this.emp = emp;
+	}
+
 	public String getApprover() {
 		return approver;
 	}
@@ -15,14 +23,14 @@ public class TicketsInfo {
 
 	double amt;
 	
-	public TicketsInfo(Integer tixNum, String submitted, String purchased, String category, Double amt, String employee, String status, String approver) {
+	public TicketsInfo(Integer tixNum, String submitted, String purchased, String category, Double amt, String emp, String status, String approver) {
 		super();
 		this.tixNum = tixNum;
 		this.submitted = submitted;
 		this.purchased = purchased;
 		this.category = category;
 		this.amt = amt;
-		this.employee = employee;
+		this.emp = emp;
 		this.status = status;
 		this.approver = approver;
 	}
@@ -84,10 +92,10 @@ public class TicketsInfo {
 	public String toString() {
 		if(status.equals("PENDING")) {
 			return "\nTicket [#" + tixNum + ", submitted=" + submitted + ", purchased=" + purchased + ", category="
-					+ category + ", amount=$" + amt + ", employee=" + employee + ", status=" + status + "]";
+					+ category + ", amount=$" + amt + ", employee=" + emp + ", status=" + status + "]";
 		}else {
 		return "\nTicket [#" + tixNum + ", submitted=" + submitted + ", purchased=" + purchased + ", category="
-				+ category + ", amount=$" + amt + ", employee=" + employee + ", status=" + status + ", approver=" + approver + "]";
+				+ category + ", amount=$" + amt + ", employee=" + emp + ", status=" + status + ", approver=" + approver + "]";
 		}
 	}
 

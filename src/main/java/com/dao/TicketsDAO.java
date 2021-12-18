@@ -14,7 +14,8 @@ import com.model.TicketsInfo;
 public class TicketsDAO {
 	
 	static Connection conn;
-	static String firstName, lastName, email, pswd, id;
+	static String firstName, lastName, email, pswd, id, emp, employee;
+	static int tixNum;
 
 	
 	public TicketsDAO(Connection conn) {//constructor. input is connection to SQL
@@ -28,7 +29,7 @@ public class TicketsDAO {
 		ResultSet results = statement.executeQuery();
 		
 	 	while(results.next()) { //store retrieved data into LoginInfo set
-	 		allTickets.add(new TicketsInfo(results.getInt(1),results.getString(2),results.getString(3),results.getString(4),results.getDouble(5),results.getString(6),results.getString(7),results.getString(8)));
+	 		allTickets.add(new TicketsInfo(results.getInt("id"),results.getString("submitted"),results.getString("purchased"),results.getString("cat"),results.getDouble("amt"),results.getString("emp"),results.getString("status"),results.getString("approver")));
 	 	}
 	 	System.out.println(allTickets);
 	 	return allTickets; //return Set
@@ -40,7 +41,7 @@ public class TicketsDAO {
 		ResultSet results = statement.executeQuery();
 		
 	 	while(results.next()) { //store retrieved data into LoginInfo set
-	 		pendingTickets.add(new TicketsInfo(results.getInt(1),results.getString(2),results.getString(3),results.getString(4),results.getDouble(5),results.getString(6),results.getString(7),results.getString(8)));
+	 		pendingTickets.add(new TicketsInfo(results.getInt("id"),results.getString("submitted"),results.getString("purchased"),results.getString("cat"),results.getDouble("amt"),results.getString("emp"),results.getString("status"),results.getString("approver")));
 	 	}
 	 	return pendingTickets; //return Set
 	}
@@ -51,7 +52,7 @@ public class TicketsDAO {
 		ResultSet results = statement.executeQuery();
 		
 	 	while(results.next()) { //store retrieved data into LoginInfo set
-	 		closedTickets.add(new TicketsInfo(results.getInt(1),results.getString(2),results.getString(3),results.getString(4),results.getDouble(5),results.getString(6),results.getString(7),results.getString(8)));
+	 		closedTickets.add(new TicketsInfo(results.getInt("id"),results.getString("submitted"),results.getString("purchased"),results.getString("cat"),results.getDouble("amt"),results.getString("emp"),results.getString("status"),results.getString("approver")));
 	 	}
 	 	return closedTickets; //return Set
 	}
@@ -81,7 +82,7 @@ public class TicketsDAO {
 		ResultSet results = statement.executeQuery();
 		
 	 	while(results.next()) { //store retrieved data into LoginInfo set
-	 		pendingTickets.add(new TicketsInfo(results.getInt(1),results.getString(2),results.getString(3),results.getString(4),results.getDouble(5),results.getString(6),results.getString(7),results.getString(8)));
+	 		pendingTickets.add(new TicketsInfo(results.getInt("id"),results.getString("submitted"),results.getString("purchased"),results.getString("cat"),results.getDouble("amt"),results.getString("emp"),results.getString("status"),results.getString("approver")));
 	 	}
 	 	return pendingTickets; //return Set
 	}
@@ -92,9 +93,35 @@ public class TicketsDAO {
 		ResultSet results = statement.executeQuery();
 		
 	 	while(results.next()) { //store retrieved data into LoginInfo set
-	 		pendingTickets.add(new TicketsInfo(results.getInt(1),results.getString(2),results.getString(3),results.getString(4),results.getDouble(5),results.getString(6),results.getString(7),results.getString(8)));
+	 		pendingTickets.add(new TicketsInfo(results.getInt("id"),results.getString("submitted"),results.getString("purchased"),results.getString("cat"),results.getDouble("amt"),results.getString("emp"),results.getString("status"),results.getString("approver")));
 	 	}
 	 	return pendingTickets; //return Set
 	}
+
+	public static void approveTix(String tixNum, String emp) throws Exception {
+		PreparedStatement statement = conn.prepareStatement("UPDATE tickets SET approver=?, status='CLOSED' WHERE id=?");
+		int parameterIndex=0;
+		statement.setString(++parameterIndex, emp);
+		statement.setInt(++parameterIndex, Integer.parseInt(tixNum));
+		statement.executeUpdate();
+	}
+	
+	public static void denyTix(String tixNum, String emp) throws Exception {
+		PreparedStatement statement = conn.prepareStatement("UPDATE tickets SET approver=?, status='DENIED' WHERE id=?");
+		int parameterIndex=0;
+		statement.setString(++parameterIndex, emp);
+		statement.setInt(++parameterIndex, Integer.parseInt(tixNum));
+		statement.executeUpdate();
+	}
+	
+	public static void deleteTix(String tixNum, String emp) throws Exception {
+		PreparedStatement statement = conn.prepareStatement("UPDATE tickets SET approver=?, status='DELETED' WHERE id=?");
+		int parameterIndex=0;
+		statement.setString(++parameterIndex, emp);
+		statement.setInt(++parameterIndex, Integer.parseInt(tixNum));
+		statement.executeUpdate();
+	}
+
+
 
 }

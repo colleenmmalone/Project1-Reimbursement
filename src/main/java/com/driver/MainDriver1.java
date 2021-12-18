@@ -40,9 +40,14 @@ public class MainDriver1 {
 			//ticket center
 			app.get("/pending/{emp}", TicketController.getPendingHandler);
 			app.get("/completed/{emp}", TicketController.getCompletedHandler);
+			app.post("/newTix.html/{purchased}/{cat}/{amt}/{emp}", TicketController.addNewTix);
+			app.post("/delete/{emp}/{tixNum}", TicketController.deleteTixHandler);
+			
+			//admin ticket center
 			app.get("/admin/pending/", TicketController.getAllPendingHandler);
 			app.get("/admin/completed/", TicketController.getAllCompletedHandler);
-			app.post("/newTix.html/{purchased}/{cat}/{amt}/{emp}", TicketController.addNewTix);
+			app.post("/approve/{emp}/{tixNum}", TicketController.approveTixHandler);
+			app.post("/deny/{emp}/{tixNum}", TicketController.denyTixHandler);
 			
 			//change settings
 			app.post("/settings/personal/{emp}/{firstName}/{lastName}/{birthday}", HelloController.personalSettingsHandler);
@@ -51,8 +56,6 @@ public class MainDriver1 {
 			//logout
 			app.get("/logout", HelloController.logoutHandler);
 			
-			
-
 			
 		}catch (Exception e) {
 			e.printStackTrace();

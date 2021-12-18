@@ -92,6 +92,28 @@ hr{
     float: left;
   }
 
+  #approveB, #denyB, #delB{
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight:bold;
+    font-family: sans-serif;
+    width:auto;
+    margin:  10px 10px 10px 20px;
+    padding: 8px;
+  }
+
+  #approveB{
+    background-color:greenyellow;
+    border: 2px solid forestgreen;
+    color: forestgreen;
+  }
+
+  #denyB, #delB{
+    background-color:rgb(250, 121, 111);
+    border: 2px solid red;
+    color: maroon;
+  }
+
   #pendingTix{
     /* background-color: #d2d9db; */
     background-color: #efdecd;

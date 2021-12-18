@@ -15,13 +15,13 @@ function getUser() {
         var responseSection = document.getElementById("restData"); 
         if(response.first_name==='null'){
             responseSection.innerHTML = 'You are not logged in!';
-        }else{
-            
+        }else{           
             responseSection.innerHTML = `<h1>Hello, ${response.first_name}!</h1>`;
             if(response.id === 'EMPLOYEE'){
                 getPending(response.email);
                 getCompleted(response.email);
             }else{
+                document.getElementById("newTix").remove();
                 var admin = document.createElement('h3');
                 admin.innerHTML = 'Admin View';
                 responseSection.appendChild(admin);
@@ -33,34 +33,45 @@ function getUser() {
 }
 
 function getPending(email) {
-
     var apiURL = "http://localhost:7001/pending/" + email;
     console.log(apiURL);
     fetch(apiURL)
         .then(responseP => responseP.json())
-        .then(json => displayPending(json, email))
+        .then(json => displayPending(json))
         .catch(err => console.log("Request Failed", err));
 }
 
 function getCompleted(email) {
-
     var apiURL = "http://localhost:7001/completed/" + email;
     console.log(apiURL);
     fetch(apiURL)
         .then(responseC => responseC.json())
-        .then(json => displayCompleted(json, email))
+        .then(json => displayCompleted(json))
+        .catch(err => console.log("Request Failed", err));
+}
+
+function getAllPending() {
+    var apiURL = "http://localhost:7001/admin/pending/";
+    console.log(apiURL);
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(json => displayPending(json))
+        .catch(err => console.log("Request Failed", err));
+}
+
+function getAllCompleted() {
+    var apiURL = "http://localhost:7001/admin/completed/";
+    console.log(apiURL);
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(json => displayCompleted(json))
         .catch(err => console.log("Request Failed", err));
 }
 
 function displayPending(responseP, email) {
     dataSection = document.getElementById("pendingTix");
 
-/*    var head = document.createElement("h3");
-    head.innerHTML = "Pending";
-    dataSection.appendChild(head);
-*/
-
-    var headerArr = ["Ticket #","Submit Date","Purchase Date","Type","Amount","Employee"];
+    var headerArr = ["","Ticket #","Submit Date","Purchase Date","Type","Amount","Employee"];
     
     var table = document.createElement('table');
     var trh = document.createElement('tr');
@@ -78,6 +89,13 @@ function displayPending(responseP, email) {
     for(i=0 ; i < responseP.length ; i++){
         console.log(responseP[i]);
         var tr = document.createElement('tr');  
+
+        var td = document.createElement("td");
+        var c = document.createElement("input");
+        c.setAttribute("type", "checkbox");
+        c.setAttribute("id", responseP[i].tixNum);
+        td.appendChild(c);       
+        tr.appendChild(td);
 
         var td1 = document.createElement("td");
         var td1Text = document.createTextNode(responseP[i].tixNum);
@@ -105,19 +123,40 @@ function displayPending(responseP, email) {
         tr.appendChild(td5);
 
         var td6 = document.createElement("td");
-        var td6Text = document.createTextNode(email);
+        var td6Text = document.createTextNode(responseP[i].emp);
         td6.appendChild(td6Text);
         tr.appendChild(td6);
 
         table.appendChild(tr);
     }
     dataSection.appendChild(table);
+
+    if (emp.id === 'ADMIN'){
+        var approve = document.createElement("button");       
+        approve.setAttribute("id", "approveB");
+        approve.innerText = "Approve";    
+        dataSection.appendChild(approve);
+        document.getElementById("approveB").onclick = approveF;
+        
+        var deny = document.createElement("button");
+        deny.innerHTML = "Deny";
+        deny.setAttribute("id", "denyB");
+        dataSection.appendChild(deny);
+        document.getElementById("denyB").onclick = denyF;
+
+    }else{
+        var del = document.createElement("button");
+        del.setAttribute("id", "delB");
+        del.innerHTML = "Delete";
+        dataSection.appendChild(del);
+        document.getElementById("delB").onclick = delF;
+    }
 }
 
-function displayCompleted(response, email) {
+function displayCompleted(response) {
     dataSection = document.getElementById("completedTix");
 
-    var headerArr = ["Ticket #","Submit Date","Purchase Date","Type","Amount","Employee","Status","Aprover ID","Receipt"];
+    var headerArr = ["Ticket #","Submit Date","Purchase Date","Type","Amount","Employee","Aprover ID"];
 
     var table = document.createElement('table');
     var trh = document.createElement('tr');
@@ -162,12 +201,63 @@ function displayCompleted(response, email) {
         tr.appendChild(td5);
 
         var td6 = document.createElement("td");
-        var td6Text = document.createTextNode(email);
+        var td6Text = document.createTextNode(response[i].emp);
         td6.appendChild(td6Text);
         tr.appendChild(td6);
+
+        var td7 = document.createElement("td");
+        var td7Text = document.createTextNode(response[i].approver);
+        td7.appendChild(td7Text);
+        tr.appendChild(td7);
 
         table.appendChild(tr);
     }
     dataSection.appendChild(table);
+}
+
+function approveF(){
+    if(confirm("Confirm approve?")){
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        let tix = [];
+        checkboxes.forEach((checkbox) => {
+            tix.push(checkbox.id);
+        });
+    
+        for(i=0 ; i< tix.length ; i++){
+            var apiURL = "http://localhost:7001/approve/" + emp.email +"/" + tix[i];
+            console.log(apiURL);
+            fetch(apiURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(),
+            })
+            .catch(err => console.log("Request Failed", err));
+        }
+        alert("process complete");
+        location.reload();
+    }else{
+        console.log("process canceled");
+    }
+}
+
+function denyF(){
+    console.log("deny");
+    confirm("Confirm deny?");
+}
+
+function delF(){
+    console.log("delete");
+    confirm("Confirm delete?");
+}
+
+function getChecked(){
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    let tix = [];
+    checkboxes.forEach((checkbox) => {
+        tix.push(checkbox.id);
+    });
+
 }
 
