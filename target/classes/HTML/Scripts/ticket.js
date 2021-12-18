@@ -1,39 +1,34 @@
-
+var emp;
 
 function getUser() {
 
     //find out who is logged in
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = receiveData;
-    xhttp.open('GET', '/whoisloggedin'); 
-    xhttp.send();
-    
-    function receiveData() {
-        var responseSection = document.getElementById("restData");
-        
-        if (xhttp.readyState === 4) { 
-            if (xhttp.status === 200) { 
-                var response = xhttp.responseText;
-                response = JSON.parse(response);
-                displayResponse(response);
-                
-            } else {
-                responseSection.innerHTML = 'Something went wrong. Try reloading';
-            }
-        } else {
-            responseSection.innerHTML = 'I\'m thinking....'; 
-        } 
-    }
-}
+    var apiURL = "http://localhost:7001/whoisloggedin";
 
-function displayResponse(response){
-    var responseSection = document.getElementById("restData"); 
-    if(response.first_name==='null'){
-        responseSection.innerHTML = 'You are not logged in!';
-    }else{
-        responseSection.innerHTML = `<h1>Hello, ${response.first_name}!</h1>`;
-        getPending(response.email);
-        getCompleted(response.email);
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(json => displayResponse(json))
+        .catch(err => console.log("Request Failed", err));
+
+    function displayResponse(response){
+        emp = response;
+        var responseSection = document.getElementById("restData"); 
+        if(response.first_name==='null'){
+            responseSection.innerHTML = 'You are not logged in!';
+        }else{
+            
+            responseSection.innerHTML = `<h1>Hello, ${response.first_name}!</h1>`;
+            if(response.id === 'EMPLOYEE'){
+                getPending(response.email);
+                getCompleted(response.email);
+            }else{
+                var admin = document.createElement('h3');
+                admin.innerHTML = 'Admin View';
+                responseSection.appendChild(admin);
+                getAllPending();
+                getAllCompleted();
+            }
+        }
     }
 }
 

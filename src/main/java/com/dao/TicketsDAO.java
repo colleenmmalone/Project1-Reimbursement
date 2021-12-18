@@ -21,6 +21,7 @@ public class TicketsDAO {
 		this.conn = conn;
 	}
 	
+	//these are for admins
 	public static Set<TicketsInfo> getAllTickets() throws SQLException{
 		Set<TicketsInfo> allTickets = new HashSet<TicketsInfo>();
 		PreparedStatement statement = conn.prepareStatement("SELECT * FROM tickets ORDER BY submitted");
@@ -29,6 +30,7 @@ public class TicketsDAO {
 	 	while(results.next()) { //store retrieved data into LoginInfo set
 	 		allTickets.add(new TicketsInfo(results.getInt(1),results.getString(2),results.getString(3),results.getString(4),results.getDouble(5),results.getString(6),results.getString(7),results.getString(8)));
 	 	}
+	 	System.out.println(allTickets);
 	 	return allTickets; //return Set
 	}
 	
@@ -54,6 +56,7 @@ public class TicketsDAO {
 	 	return closedTickets; //return Set
 	}
 
+	//these are for employees
 	public void addnewTix(String purchased, String category, String amt, String employee) throws SQLException {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
 		LocalDateTime now = LocalDateTime.now(); 
@@ -69,9 +72,7 @@ public class TicketsDAO {
 		statement.setDouble(++parameterIndex, amtD);
 		statement.setString(++parameterIndex, employee);
 		statement.setString(++parameterIndex, "PENDING");
-		statement.executeUpdate();	
-
-		
+		statement.executeUpdate();			
 	}
 	
 	public static Set<TicketsInfo> getPending(String emp) throws SQLException{

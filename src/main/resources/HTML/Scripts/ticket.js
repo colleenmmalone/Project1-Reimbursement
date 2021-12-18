@@ -1,44 +1,38 @@
-
+var emp;
 
 function getUser() {
 
     //find out who is logged in
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = receiveData;
-    xhttp.open('GET', '/whoisloggedin'); 
-    xhttp.send();
-    
-    function receiveData() {
-        var responseSection = document.getElementById("restData");
-        
-        if (xhttp.readyState === 4) { 
-            if (xhttp.status === 200) { 
-                var response = xhttp.responseText;
-                response = JSON.parse(response);
-                displayResponse(response);
-                
-            } else {
-                responseSection.innerHTML = 'Something went wrong. Try reloading';
-            }
-        } else {
-            responseSection.innerHTML = 'I\'m thinking....'; 
-        } 
-    }
-}
+    var apiURL = "http://localhost:7001/whoisloggedin";
 
-function displayResponse(response){
-    var responseSection = document.getElementById("restData"); 
-    if(response.first_name==='null'){
-        responseSection.innerHTML = 'You are not logged in!';
-    }else{
-        responseSection.innerHTML = `<h1>Hello, ${response.first_name}!</h1>`;
-        getPending(response.email);
-        getCompleted(response.email);
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(json => displayResponse(json))
+        .catch(err => console.log("Request Failed", err));
+
+    function displayResponse(response){
+        emp = response;
+        var responseSection = document.getElementById("restData"); 
+        if(response.first_name==='null'){
+            responseSection.innerHTML = 'You are not logged in!';
+        }else{
+            
+            responseSection.innerHTML = `<h1>Hello, ${response.first_name}!</h1>`;
+            if(response.id === 'EMPLOYEE'){
+                getPending(response.email);
+                getCompleted(response.email);
+            }else{
+                var admin = document.createElement('h3');
+                admin.innerHTML = 'Admin View';
+                responseSection.appendChild(admin);
+                getAllPending();
+                getAllCompleted();
+            }
+        }
     }
 }
 
 function getPending(email) {
-
     var apiURL = "http://localhost:7001/pending/" + email;
     console.log(apiURL);
     fetch(apiURL)
@@ -48,7 +42,6 @@ function getPending(email) {
 }
 
 function getCompleted(email) {
-
     var apiURL = "http://localhost:7001/completed/" + email;
     console.log(apiURL);
     fetch(apiURL)
@@ -57,13 +50,26 @@ function getCompleted(email) {
         .catch(err => console.log("Request Failed", err));
 }
 
+function getAllPending() {
+    var apiURL = "http://localhost:7001/admin/pending/";
+    console.log(apiURL);
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(json => displayAllPending(json, email))
+        .catch(err => console.log("Request Failed", err));
+}
+
+function getAllCompleted() {
+    var apiURL = "http://localhost:7001/admin/completed/";
+    console.log(apiURL);
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(json => displayAllCompleted(json, email))
+        .catch(err => console.log("Request Failed", err));
+}
+
 function displayPending(responseP, email) {
     dataSection = document.getElementById("pendingTix");
-
-/*    var head = document.createElement("h3");
-    head.innerHTML = "Pending";
-    dataSection.appendChild(head);
-*/
 
     var headerArr = ["Ticket #","Submit Date","Purchase Date","Type","Amount","Employee"];
     
@@ -122,7 +128,7 @@ function displayPending(responseP, email) {
 function displayCompleted(response, email) {
     dataSection = document.getElementById("completedTix");
 
-    var headerArr = ["Ticket #","Submit Date","Purchase Date","Type","Amount","Employee","Status","Aprover ID","Receipt"];
+    var headerArr = ["Ticket #","Submit Date","Purchase Date","Type","Amount","Employee","Aprover ID"];
 
     var table = document.createElement('table');
     var trh = document.createElement('tr');
@@ -170,6 +176,11 @@ function displayCompleted(response, email) {
         var td6Text = document.createTextNode(email);
         td6.appendChild(td6Text);
         tr.appendChild(td6);
+
+        var td7 = document.createElement("td");
+        var td7Text = document.createTextNode(response[i].approver);
+        td7.appendChild(td7Text);
+        tr.appendChild(td7);
 
         table.appendChild(tr);
     }

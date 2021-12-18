@@ -31,34 +31,28 @@ public class MainDriver1 {
 				ctx.addStaticFiles("HTML", Location.CLASSPATH);
 			}).start(7001);
 			
+			//login or register
 			app.get("/login", HelloController.getAllUsersHandler);
 			app.get("/login/{email}/{pswd}", HelloController.loginHandler);	
-			app.get("register.html/{firstName}/{lastName}/{email}/{pswd}/{birthday}", HelloController.registerHandler);
+			app.get("register.html/{firstName}/{lastName}/{email}/{pswd}/{birthday}", HelloController.registerHandler);		//should be post	
 			app.get("/whoisloggedin", HelloController.whoIsLoggedIn);
+			
+			//ticket center
 			app.get("/pending/{emp}", TicketController.getPendingHandler);
 			app.get("/completed/{emp}", TicketController.getCompletedHandler);
+			app.get("/admin/pending/", TicketController.getAllPendingHandler);
+			app.get("/admin/completed/", TicketController.getAllCompletedHandler);
 			app.post("/newTix.html/{purchased}/{cat}/{amt}/{emp}", TicketController.addNewTix);
-			app.get("/logout", HelloController.logoutHandler);
+			
+			//change settings
 			app.post("/settings/personal/{emp}/{firstName}/{lastName}/{birthday}", HelloController.personalSettingsHandler);
-			//app.post("/settings/email/{emp}/{newEmail}", HelloController.emailSettingsHandler);
 			app.post("/settings/password/{emp}/{password}", HelloController.passwordSettingsHandler);
 			
+			//logout
+			app.get("/logout", HelloController.logoutHandler);
 			
-		//	app.post("ticketCenter.html/{tixNum}", TicketController.deleteTix);
-		//	app.post("ticketCenter.html/{tixNum}/{approver}/{stat}", TicketController.approveTix);
-			
-//			Set<TicketsInfo> allTix = ticketsdao.getAllTickets();
-//			System.out.println(allTix);
-//			LoginDAO.oneUser = new LoginInfo("asf","asf","asf","asf","asf");
-//			logindao.updatePersonalSettings("admin", "Emma", "Watson", "1978-02-14");
-//			logindao.updatePasswordSettings("admin", "admin");
-//			System.out.println(LoginDAO.oneUser);
 			
 
-			
-		//	ticketsdao.addnewTix("2021-03-04", "GAS", "91.32", "emp2");
-			
-			 
 			
 		}catch (Exception e) {
 			e.printStackTrace();

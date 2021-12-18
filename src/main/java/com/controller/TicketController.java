@@ -20,10 +20,8 @@ public class TicketController {
 	public static Handler addNewTix = ctx->{
 		try(Connection conn = Connect2SQL.getConnection()){ 
 			TicketsDAO ticketsdao = new TicketsDAO(conn);
-			ticketsdao.addnewTix(ctx.pathParam("purchased"),ctx.pathParam("cat"),ctx.pathParam("amt"),ctx.pathParam("emp"));			
-			
-		}
-		
+			ticketsdao.addnewTix(ctx.pathParam("purchased"),ctx.pathParam("cat"),ctx.pathParam("amt"),ctx.pathParam("emp"));						
+		}		
 	};
 	
 	public static Handler getPendingHandler = ctx->{
@@ -31,8 +29,7 @@ public class TicketController {
 			TicketsDAO ticketsdao = new TicketsDAO(conn);
 			allTix = TicketsDAO.getPending(ctx.pathParam("emp"));			
 			ctx.json(allTix);
-		}
-		
+		}		
 	};
 	
 	public static Handler getCompletedHandler = ctx->{
@@ -40,8 +37,23 @@ public class TicketController {
 			TicketsDAO ticketsdao = new TicketsDAO(conn);
 			allTix = TicketsDAO.getClosed(ctx.pathParam("emp"));			
 			ctx.json(allTix);
-		}
-		
+		}		
+	};
+	
+	public static Handler getAllPendingHandler = ctx->{
+		try(Connection conn = Connect2SQL.getConnection()){ 
+			TicketsDAO ticketsdao = new TicketsDAO(conn);
+			allTix = TicketsDAO.getAllPending();			
+			ctx.json(allTix);
+		}		
+	};
+	
+	public static Handler getAllCompletedHandler = ctx->{
+		try(Connection conn = Connect2SQL.getConnection()){ 
+			TicketsDAO ticketsdao = new TicketsDAO(conn);
+			allTix = TicketsDAO.getAllClosed();			
+			ctx.json(allTix);
+		}		
 	};
 	
 	

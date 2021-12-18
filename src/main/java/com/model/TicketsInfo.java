@@ -27,16 +27,16 @@ public class TicketsInfo {
 		this.approver = approver;
 	}
 	
-	public TicketsInfo(Integer tixNum, String submitted, String purchased, String category, Double amt, String employee, String status) {
-		super();
-		this.tixNum = tixNum;
-		this.submitted = submitted;
-		this.purchased = purchased;
-		this.category = category;
-		this.amt = amt;
-		this.employee = employee;
-		this.status = status;
-	}
+//	public TicketsInfo(Integer tixNum, String submitted, String purchased, String category, Double amt, String employee, String status) {
+//		super();
+//		this.tixNum = tixNum;
+//		this.submitted = submitted;
+//		this.purchased = purchased;
+//		this.category = category;
+//		this.amt = amt;
+//		this.employee = employee;
+//		this.status = status;
+//	}
 
 
 
