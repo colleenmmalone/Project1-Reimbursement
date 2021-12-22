@@ -1,11 +1,19 @@
 package com.controller;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Set;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.dao.LoginDAO;
 import com.model.LoginInfo;
 import com.util.Connect2SQL;
+import com.util.HibernateUtil;
+
 
 import io.javalin.http.Handler;
 
@@ -13,7 +21,9 @@ public class HelloController {
 	static Connection conn;
 	static Set<LoginInfo> allUsers;
 	static LoginInfo emp;
-	
+	static Session session;
+	static Transaction transaction;
+	 
 	public static Handler loginHandler = ctx->{
 		try(Connection conn = Connect2SQL.getConnection()){ 
 			LoginDAO logindao = new LoginDAO(conn);
@@ -23,10 +33,8 @@ public class HelloController {
 		}
 	};
 	
-	
-	
 	public static Handler whoIsLoggedIn = ctx->{
-			LoginInfo emp = LoginDAO.getterOneUser();
+			LoginInfo emp = LoginDAO.getCurrentUser();
 			System.out.println(emp);
 			ctx.json(emp);
 	};
@@ -38,17 +46,7 @@ public class HelloController {
 		ctx.json(allUsers);
 		}	
 	};
-	
-	public static Handler getOneUserHandler = ctx->{
-		//try(Connection conn = Connect2SQL.getConnection()){ 
-		//	LoginDAO logindao = new LoginDAO(conn);
-			//logged = LoginDAO.getOneUser(emp.getEmail());
-			ctx.json(emp);
-		//}
-	};
-	
-	//app.get("register.html/{firstName}/{lastName}/{email}/{pswd}/{birthday}", HelloController.registerHandler);	
-	
+
 	public static Handler registerHandler = ctx->{
 		try(Connection conn = Connect2SQL.getConnection()){ 
 			LoginDAO logindao = new LoginDAO(conn);
@@ -78,14 +76,6 @@ public class HelloController {
 		}
 		ctx.result("name and/or birthday updated");
 	};
-
-//	public static Handler emailSettingsHandler = ctx->{
-//		try(Connection conn = Connect2SQL.getConnection()){ 
-//			LoginDAO logindao = new LoginDAO(conn);
-//			logindao.updateEmailSettings(ctx.pathParam("emp"),	ctx.pathParam("newEmail"));		
-//		ctx.result("nothing happened");	
-//		}		
-//	};
 	
 	public static Handler passwordSettingsHandler = ctx->{
 		try(Connection conn = Connect2SQL.getConnection()){ 
@@ -95,5 +85,10 @@ public class HelloController {
 		ctx.result("password updated");
 	};
 
+	public static Handler HibernateDemo = ctx -> {
+		ArrayList<LoginInfo> l = new ArrayList<>();
+        List results = LoginDAO.getAllUsersH();
+        ctx.json(results);
+	};
 
 }

@@ -4,17 +4,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.driver.MainDriver1;
 import com.model.LoginInfo;
+import com.util.HibernateUtil;
 
 public class LoginDAO {
 	static Connection conn;
 	static String firstName, lastName, email, pswd, id;
 	public static LoginInfo oneUser;
-
-	
+	static Session session;
+	static Transaction transaction;
+	public final static Logger lg = Logger.getLogger(MainDriver1.class); 
+ 
+	 
 	public LoginDAO(Connection conn) {//constructor. input is connection to SQL
 		this.conn = conn;
 	}
@@ -45,9 +57,11 @@ public class LoginDAO {
 		oneUser = null;
 		oneUser = getOneUser(email);
 		if(pswd.equals(oneUser.getPswd())) {
+			lg.info(email+" has logged in.");
 			return oneUser; //return Set	 	
 		}else {
 			oneUser = new LoginInfo("null","null","null","null","null","null");
+			lg.warn("Login failed!");
 			return oneUser;
 		}
 	}
@@ -68,14 +82,16 @@ public class LoginDAO {
 			statement.executeUpdate();	
 			System.out.println("An account was made for "+firstName+" "+lastName+" with email "+email+".");
 			oneUser = new LoginInfo(firstName, lastName, email, pswd, "EMPLOYEE", birthday);
+			lg.info("A new account was created for "+firstName+" "+lastName+" with email "+email);
+			
 		}else {
-			System.out.println("A user with this email address already exists. Please login");
+			lg.info("Cannot register; a user with this email address already exists.");
 			oneUser = new LoginInfo("null","null","null","null","null","null");
 		}
 		return oneUser;
 	}
 	
-	public static LoginInfo getterOneUser() {
+	public static LoginInfo getCurrentUser() {
 		return oneUser;
 	}
 
@@ -85,8 +101,6 @@ public class LoginDAO {
 	}
 
 	public void updatePersonalSettings(String emp, String firstName, String lastName, String birthday) throws Exception{
-		// "UPDATE logins SET birthday='2021-06-19', first_name='Maria', last_name='Blondie' WHERE email='emp4'";
-		// PreparedStatement statement = conn.prepareStatement("INSERT INTO logins (first_name, last_name, email, pswd, birthday, id) VALUES (?,?,?,?,?,?)");
 		PreparedStatement statement = conn.prepareStatement("UPDATE logins SET birthday=?, first_name=?, last_name=? WHERE email=?");
 		int parameterIndex=0;
 		statement.setString(++parameterIndex, birthday);
@@ -97,15 +111,9 @@ public class LoginDAO {
 		oneUser.setBirthday(birthday);
 		oneUser.setFirst_name(firstName);
 		oneUser.setLast_name(lastName);
-		System.out.println("personal settings were changed");
+		lg.info("personal settings were changed");
 		
 	}
-
-//	public void updateEmailSettings(String emp, String newEmail) throws Exception {
-//		// "UPDATE logins SET email='" + newEmail + "' WHERE email='" + emp +"'"
-//		System.out.println("personal settings not changed");
-//		
-//	}
 
 	public void updatePasswordSettings(String emp, String pswd) throws Exception {
 		PreparedStatement statement = conn.prepareStatement("UPDATE logins SET pswd=? WHERE email=?");
@@ -114,8 +122,42 @@ public class LoginDAO {
 		statement.setString(++parameterIndex, emp);
 		statement.executeUpdate();	
 		oneUser.setPswd(pswd);
-		System.out.println("password settings were changed");
-		
+		lg.info("password settings were changed");		
+	}
+
+	public static List getAllUsersH() throws Exception{
+        List results = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();;
+            transaction = session.beginTransaction();
+            String hql = "FROM logins";
+            Query query = session.createQuery(hql);
+            results = query.list();
+            System.out.println(results);      
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return results;
+	};
+	
+	
+	public static List getOneUserH(String email) throws Exception{
+        List results = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();;
+            transaction = session.beginTransaction();
+            String hql = "FROM logins WHERE email = '"+email+"'" ;
+            Query query = session.createQuery(hql);
+            results = query.list();
+            System.out.println(results);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return results;
 	}
 
 }

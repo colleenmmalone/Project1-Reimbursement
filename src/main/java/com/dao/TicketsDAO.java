@@ -9,6 +9,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
+import com.driver.MainDriver1;
 import com.model.TicketsInfo;
 
 public class TicketsDAO {
@@ -16,8 +19,9 @@ public class TicketsDAO {
 	static Connection conn;
 	static String firstName, lastName, email, pswd, id, emp, employee;
 	static int tixNum;
+	public final static Logger lg = Logger.getLogger(MainDriver1.class); 
 
-	
+	 
 	public TicketsDAO(Connection conn) {//constructor. input is connection to SQL
 		this.conn = conn;
 	}
@@ -48,7 +52,7 @@ public class TicketsDAO {
 	
 	public static Set<TicketsInfo> getAllClosed() throws SQLException{
 		Set<TicketsInfo> closedTickets = new HashSet<TicketsInfo>();
-		PreparedStatement statement = conn.prepareStatement("SELECT * FROM tickets WHERE status='CLOSED' ORDER BY submitted");
+		PreparedStatement statement = conn.prepareStatement("SELECT * FROM tickets WHERE status='APPROVED' OR status='DENIED' ORDER BY submitted");
 		ResultSet results = statement.executeQuery();
 		
 	 	while(results.next()) { //store retrieved data into LoginInfo set
@@ -73,7 +77,8 @@ public class TicketsDAO {
 		statement.setDouble(++parameterIndex, amtD);
 		statement.setString(++parameterIndex, employee);
 		statement.setString(++parameterIndex, "PENDING");
-		statement.executeUpdate();			
+		statement.executeUpdate();
+		lg.info("Ticket was created for "+employee+" claiming $"+amtD+" for "+category);
 	}
 	
 	public static Set<TicketsInfo> getPending(String emp) throws SQLException{
@@ -89,8 +94,8 @@ public class TicketsDAO {
 	
 	public static Set<TicketsInfo> getClosed(String emp) throws SQLException{
 		Set<TicketsInfo> pendingTickets = new HashSet<TicketsInfo>();
-		PreparedStatement statement = conn.prepareStatement("SELECT * FROM tickets WHERE status='CLOSED' AND emp='" + emp+ "' ORDER BY submitted");
-		ResultSet results = statement.executeQuery();
+		PreparedStatement statement = conn.prepareStatement("SELECT * FROM tickets WHERE status='CLOSED' AND emp='" + emp+ "' ORDER BY emp");
+		ResultSet results = statement.executeQuery(); 
 		
 	 	while(results.next()) { //store retrieved data into LoginInfo set
 	 		pendingTickets.add(new TicketsInfo(results.getInt("id"),results.getString("submitted"),results.getString("purchased"),results.getString("cat"),results.getDouble("amt"),results.getString("emp"),results.getString("status"),results.getString("approver")));
@@ -104,6 +109,7 @@ public class TicketsDAO {
 		statement.setString(++parameterIndex, emp);
 		statement.setInt(++parameterIndex, Integer.parseInt(tixNum));
 		statement.executeUpdate();
+		lg.info("Ticket #"+tixNum+" was approved by "+emp);
 	}
 	
 	public static void denyTix(String tixNum, String emp) throws Exception {
@@ -112,6 +118,7 @@ public class TicketsDAO {
 		statement.setString(++parameterIndex, emp);
 		statement.setInt(++parameterIndex, Integer.parseInt(tixNum));
 		statement.executeUpdate();
+		lg.info("Ticket #"+tixNum+" was denied by "+emp);
 	}
 	
 	public static void deleteTix(String tixNum, String emp) throws Exception {
@@ -120,6 +127,7 @@ public class TicketsDAO {
 		statement.setString(++parameterIndex, emp);
 		statement.setInt(++parameterIndex, Integer.parseInt(tixNum));
 		statement.executeUpdate();
+		lg.info("Ticket #"+tixNum+" was deleted by "+emp);
 	}
 
 

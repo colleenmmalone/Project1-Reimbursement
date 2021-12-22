@@ -1,0 +1,20 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!-- step 2 -->
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "com.model.LoginInfo" table = "logins">
+    
+      <id name = "email" column = "email" type = "string">
+         <generator class="native"/>
+      </id>     
+	    <property name = "first_name" column = "first_name" type = "string"/>
+	    <property name = "last_name" column = "last_name" type = "string"/>
+	    <property name = "pswd" column = "pswd" type = "string"/>	
+		<property name = "id" column = "id" type = "string"/>
+		<property name = "birthday" column = "birthday" type = "string"/>           
+   </class>
+   
+</hibernate-mapping>

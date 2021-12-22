@@ -1,6 +1,7 @@
 package com.driver;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
@@ -18,9 +19,9 @@ public class MainDriver1 {
 	static Connection conn;
 	public final static Logger lg = Logger.getLogger(MainDriver1.class); 
 	static Javalin app;
-	
-	public static void main(String [] args){
-		
+	 
+	public static void main(String [] args) throws Exception{
+		 
 		try(Connection conn = Connect2SQL.getConnection()){ //connect to DB	
 			lg.info("Connection to Database was established");
 			LoginDAO logindao = new LoginDAO(conn);
@@ -30,7 +31,8 @@ public class MainDriver1 {
 				ctx.enableCorsForAllOrigins();
 				ctx.addStaticFiles("HTML", Location.CLASSPATH);
 			}).start(7001);
-			
+			 
+			lg.info("App has started on port 7001");
 			//login or register
 			app.get("/login", HelloController.getAllUsersHandler);
 			app.get("/login/{email}/{pswd}", HelloController.loginHandler);	
@@ -56,14 +58,24 @@ public class MainDriver1 {
 			//logout
 			app.get("/logout", HelloController.logoutHandler);
 			
+			//hibernate
+			app.get("/hbdemo", HelloController.HibernateDemo);
+			
 			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+//		LoginDAO.getAllUsersH();
+//		LoginDAO.getOneUserH("emp1");
+		
 	}
 	
 	
-	
+	public MainDriver1() {
+		
+	}
 	
 	
 	

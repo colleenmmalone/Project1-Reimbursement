@@ -1,5 +1,5 @@
 document.getElementById('addNewTix').onclick = postData; 
-var response;
+
 var emp;
 
 function getUser() {
@@ -14,6 +14,7 @@ function getUser() {
 
 function displayName(response){
     console.log(response);
+  
     dataSection = document.getElementById("header");
     dataSection.innerHTML = `Hello, ${response.first_name}!`;
     emp = response.email;

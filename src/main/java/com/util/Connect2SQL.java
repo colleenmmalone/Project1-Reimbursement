@@ -14,6 +14,10 @@ import org.apache.log4j.Logger;
 
 public class Connect2SQL {
 	
+	public Connect2SQL() {
+		
+	}
+	
 	//public final static Logger lg = Logger.getLogger(Connect2SQL.class.getName());
 	public final static Logger lg = Logger.getLogger(Connect2SQL.class);
 	

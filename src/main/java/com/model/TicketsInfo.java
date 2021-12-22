@@ -34,19 +34,18 @@ public class TicketsInfo {
 		this.status = status;
 		this.approver = approver;
 	}
-	
-//	public TicketsInfo(Integer tixNum, String submitted, String purchased, String category, Double amt, String employee, String status) {
-//		super();
-//		this.tixNum = tixNum;
-//		this.submitted = submitted;
-//		this.purchased = purchased;
-//		this.category = category;
-//		this.amt = amt;
-//		this.employee = employee;
-//		this.status = status;
-//	}
 
+	public String getStatus() {
+		return status;
+	}
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public TicketsInfo() {
+		super();
+	}
 
 	public int getTixNum() {
 		return tixNum;

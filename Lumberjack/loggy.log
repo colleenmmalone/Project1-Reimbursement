@@ -229,3 +229,22 @@
 2021-12-15 22:53:05 INFO  MainDriver1:24 - Connection to Database was established
 2021-12-15 22:53:49 INFO  MainDriver1:24 - Connection to Database was established
 2021-12-15 22:54:27 INFO  MainDriver1:24 - Connection to Database was established
+2021-12-21 22:13:13 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-21 22:23:32 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-21 22:23:33 INFO  MainDriver1:35 - App has started on port 7001
+2021-12-21 22:23:50 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-21 22:23:51 INFO  MainDriver1:35 - App has started on port 7001
+2021-12-21 22:24:24 INFO  MainDriver1:60 - emp1 has logged in.
+2021-12-21 22:24:52 INFO  MainDriver1:81 - Ticket was created for emp1 claiming $483.12 for FOOD
+2021-12-21 22:25:07 INFO  MainDriver1:81 - Ticket was created for emp1 claiming $50.43 for GAS
+2021-12-21 22:25:38 INFO  MainDriver1:114 - personal settings were changed
+2021-12-21 22:26:05 INFO  MainDriver1:125 - password settings were changed
+2021-12-21 22:26:21 INFO  MainDriver1:125 - password settings were changed
+2021-12-21 22:26:29 INFO  MainDriver1:125 - password settings were changed
+2021-12-21 22:26:40 INFO  MainDriver1:60 - admin has logged in.
+2021-12-21 22:26:50 INFO  MainDriver1:112 - Ticket #1919 was approved by admin
+2021-12-21 22:27:52 INFO  MainDriver1:121 - Ticket #1914 was denied by admin
+2021-12-21 22:27:59 INFO  MainDriver1:60 - emp3 has logged in.
+2021-12-21 22:28:16 INFO  MainDriver1:81 - Ticket was created for emp3 claiming $98.11 for TRAVEL
+2021-12-21 22:28:29 INFO  MainDriver1:81 - Ticket was created for emp3 claiming $62.12 for LODGINGS
+2021-12-21 22:28:43 INFO  MainDriver1:130 - Ticket #1922 was deleted by emp3
