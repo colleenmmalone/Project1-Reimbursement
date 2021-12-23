@@ -113,7 +113,7 @@ public class LoginDAO {
 		oneUser.setLast_name(lastName);
 		lg.info("personal settings were changed");
 		
-	}
+	} 
 
 	public void updatePasswordSettings(String emp, String pswd) throws Exception {
 		PreparedStatement statement = conn.prepareStatement("UPDATE logins SET pswd=? WHERE email=?");

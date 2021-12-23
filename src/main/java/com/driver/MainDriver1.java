@@ -1,5 +1,5 @@
 package com.driver;
-
+ 
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -15,7 +15,7 @@ import com.util.Connect2SQL;
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
 
-public class MainDriver1 {
+public class MainDriver1 { 
 	static Connection conn;
 	public final static Logger lg = Logger.getLogger(MainDriver1.class); 
 	static Javalin app;

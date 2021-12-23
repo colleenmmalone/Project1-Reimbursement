@@ -3520,3 +3520,23 @@
 2021-12-22 16:03:43 INFO  MainDriver1:125 - password settings were changed
 2021-12-22 16:03:49 INFO  MainDriver1:125 - password settings were changed
 2021-12-22 16:04:07 INFO  MainDriver1:114 - personal settings were changed
+2021-12-22 21:50:15 DEBUG logging:28 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2021-12-22 21:50:20 INFO  MainDriver1:45 - Session is complete
+2021-12-22 21:50:22 INFO  MainDriver1:60 - emp1 has logged in.
+2021-12-22 21:50:22 INFO  MainDriver1:88 - Cannot register; a user with this email address already exists.
+2021-12-22 21:50:22 WARN  MainDriver1:64 - Login failed!
+2021-12-22 21:50:23 INFO  MainDriver1:125 - password settings were changed
+2021-12-22 21:50:23 INFO  MainDriver1:114 - personal settings were changed
+2021-12-22 21:50:24 INFO  MainDriver1:130 - Ticket #50 was deleted by admin
+2021-12-22 21:50:25 INFO  MainDriver1:121 - Ticket #50 was denied by admin
+2021-12-22 21:50:26 INFO  MainDriver1:112 - Ticket #50 was approved by admin
+2021-12-22 21:50:27 INFO  MainDriver1:60 - emp1 has logged in.
+2021-12-22 21:50:27 INFO  MainDriver1:88 - Cannot register; a user with this email address already exists.
+2021-12-22 21:50:28 WARN  MainDriver1:64 - Login failed!
+2021-12-22 21:50:28 INFO  MainDriver1:125 - password settings were changed
+2021-12-22 21:50:28 INFO  MainDriver1:114 - personal settings were changed
+2021-12-22 21:50:29 INFO  MainDriver1:130 - Ticket #50 was deleted by admin
+2021-12-22 21:50:31 INFO  MainDriver1:121 - Ticket #50 was denied by admin
+2021-12-22 21:50:32 INFO  MainDriver1:112 - Ticket #50 was approved by admin
+2021-12-23 09:38:10 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-23 09:38:11 INFO  MainDriver1:35 - App has started on port 7001

@@ -48,7 +48,7 @@ public class TicketsDAO {
 	 		pendingTickets.add(new TicketsInfo(results.getInt("id"),results.getString("submitted"),results.getString("purchased"),results.getString("cat"),results.getDouble("amt"),results.getString("emp"),results.getString("status"),results.getString("approver")));
 	 	}
 	 	return pendingTickets; //return Set
-	}
+	} 
 	
 	public static Set<TicketsInfo> getAllClosed() throws SQLException{
 		Set<TicketsInfo> closedTickets = new HashSet<TicketsInfo>();

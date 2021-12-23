@@ -16,7 +16,7 @@ public class TicketController {
 	static Connection conn;
 	static Set<TicketsInfo> allTix;
 	static TicketsInfo tix;
-
+ 
 	public static Handler addNewTix = ctx->{
 		try(Connection conn = Connect2SQL.getConnection()){ 
 			TicketsDAO ticketsdao = new TicketsDAO(conn);
