@@ -3540,3 +3540,80 @@
 2021-12-22 21:50:32 INFO  MainDriver1:112 - Ticket #50 was approved by admin
 2021-12-23 09:38:10 INFO  MainDriver1:26 - Connection to Database was established
 2021-12-23 09:38:11 INFO  MainDriver1:35 - App has started on port 7001
+2021-12-23 09:40:59 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-23 09:41:00 INFO  MainDriver1:35 - App has started on port 7001
+2021-12-23 09:41:41 INFO  MainDriver1:85 - A new account was created for emp7 emp7 with email emp7
+2021-12-23 09:42:00 INFO  MainDriver1:81 - Ticket was created for emp7 claiming $500.38 for TRAVEL
+2021-12-23 09:42:16 INFO  MainDriver1:81 - Ticket was created for emp7 claiming $9000.0 for GAS
+2021-12-23 09:42:25 INFO  MainDriver1:130 - Ticket #1924 was deleted by emp7
+2021-12-23 09:42:50 INFO  MainDriver1:114 - personal settings were changed
+2021-12-23 09:43:01 INFO  MainDriver1:114 - personal settings were changed
+2021-12-23 09:43:16 INFO  MainDriver1:114 - personal settings were changed
+2021-12-23 09:43:45 INFO  MainDriver1:125 - password settings were changed
+2021-12-23 09:44:03 INFO  MainDriver1:60 - admin has logged in.
+2021-12-23 09:45:31 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-23 09:45:31 INFO  MainDriver1:35 - App has started on port 7001
+2021-12-23 09:45:31 DEBUG logging:28 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2021-12-23 09:45:33 INFO  MainDriver1:45 - Session is complete
+2021-12-23 11:03:29 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-23 11:03:30 INFO  MainDriver1:35 - App has started on port 7001
+2021-12-23 11:03:30 DEBUG logging:28 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2021-12-23 11:03:31 INFO  MainDriver1:45 - Session is complete
+2021-12-23 11:03:48 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-23 11:03:49 INFO  MainDriver1:35 - App has started on port 7001
+2021-12-23 11:04:05 WARN  MainDriver1:64 - Login failed!
+2021-12-23 11:04:10 INFO  MainDriver1:60 - emp1 has logged in.
+2021-12-23 11:04:29 INFO  MainDriver1:130 - Ticket #1906 was deleted by emp1
+2021-12-23 11:04:45 INFO  MainDriver1:81 - Ticket was created for emp1 claiming $9000.67 for GAS
+2021-12-23 11:05:06 INFO  MainDriver1:85 - A new account was created for emp8 emp8 with email emp8
+2021-12-23 11:05:20 INFO  MainDriver1:81 - Ticket was created for emp8 claiming $492.93 for TRAVEL
+2021-12-23 11:05:53 INFO  MainDriver1:114 - personal settings were changed
+2021-12-23 11:06:06 INFO  MainDriver1:114 - personal settings were changed
+2021-12-23 11:06:57 INFO  MainDriver1:125 - password settings were changed
+2021-12-23 11:07:10 INFO  MainDriver1:60 - admin has logged in.
+2021-12-23 11:07:26 INFO  MainDriver1:112 - Ticket #1921 was approved by admin
+2021-12-23 11:07:26 INFO  MainDriver1:112 - Ticket #1926 was approved by admin
+2021-12-23 11:07:26 INFO  MainDriver1:112 - Ticket #1925 was approved by admin
+2021-12-23 11:07:38 INFO  MainDriver1:121 - Ticket #1916 was denied by admin
+2021-12-23 15:40:59 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-23 15:40:59 INFO  MainDriver1:35 - App has started on port 7001
+2021-12-23 15:44:25 INFO  MainDriver1:85 - A new account was created for Frank Furter with email emp9
+2021-12-23 15:44:37 INFO  MainDriver1:114 - personal settings were changed
+2021-12-23 15:44:48 INFO  MainDriver1:125 - password settings were changed
+2021-12-23 15:45:06 INFO  MainDriver1:81 - Ticket was created for emp9 claiming $600.32 for FOOD
+2021-12-23 15:45:23 INFO  MainDriver1:60 - admin has logged in.
+2021-12-23 15:45:33 INFO  MainDriver1:112 - Ticket #1923 was approved by admin
+2021-12-23 15:45:39 INFO  MainDriver1:121 - Ticket #1927 was denied by admin
+2021-12-25 14:27:46 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-25 14:27:47 INFO  MainDriver1:35 - App has started on port 7001
+2021-12-25 14:28:09 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-25 14:28:18 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-25 14:28:30 DEBUG logging:28 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2021-12-25 14:28:33 INFO  MainDriver1:45 - Session is complete
+2021-12-25 14:28:35 INFO  MainDriver1:60 - emp1 has logged in.
+2021-12-25 14:28:35 INFO  MainDriver1:88 - Cannot register; a user with this email address already exists.
+2021-12-25 14:28:36 WARN  MainDriver1:64 - Login failed!
+2021-12-25 14:28:36 INFO  MainDriver1:125 - password settings were changed
+2021-12-25 14:28:36 INFO  MainDriver1:114 - personal settings were changed
+2021-12-25 14:28:37 INFO  MainDriver1:130 - Ticket #50 was deleted by admin
+2021-12-25 14:28:38 INFO  MainDriver1:121 - Ticket #50 was denied by admin
+2021-12-25 14:28:39 INFO  MainDriver1:112 - Ticket #50 was approved by admin
+2021-12-25 14:28:40 INFO  MainDriver1:60 - emp1 has logged in.
+2021-12-25 14:28:40 INFO  MainDriver1:88 - Cannot register; a user with this email address already exists.
+2021-12-25 14:28:41 WARN  MainDriver1:64 - Login failed!
+2021-12-25 14:28:41 INFO  MainDriver1:125 - password settings were changed
+2021-12-25 14:28:41 INFO  MainDriver1:114 - personal settings were changed
+2021-12-25 14:28:42 INFO  MainDriver1:130 - Ticket #50 was deleted by admin
+2021-12-25 14:28:43 INFO  MainDriver1:121 - Ticket #50 was denied by admin
+2021-12-25 14:28:43 INFO  MainDriver1:112 - Ticket #50 was approved by admin
+2021-12-25 14:31:51 INFO  MainDriver1:60 - emp1 has logged in.
+2021-12-25 14:32:08 INFO  MainDriver1:81 - Ticket was created for emp1 claiming $734.92 for LODGINGS
+2021-12-25 14:32:22 INFO  MainDriver1:60 - admin has logged in.
+2021-12-25 14:32:30 INFO  MainDriver1:112 - Ticket #1928 was approved by admin
+2021-12-25 14:32:52 INFO  MainDriver1:114 - personal settings were changed
+2021-12-26 19:25:35 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-26 19:25:35 INFO  MainDriver1:35 - App has started on port 7001
+2021-12-26 19:25:57 INFO  MainDriver1:60 - emp1 has logged in.
+2021-12-26 19:26:25 INFO  MainDriver1:81 - Ticket was created for emp1 claiming $462.24 for TRAVEL
+2021-12-27 12:20:29 INFO  MainDriver1:26 - Connection to Database was established
+2021-12-27 12:20:29 INFO  MainDriver1:35 - App has started on port 7001

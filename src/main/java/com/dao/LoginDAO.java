@@ -146,7 +146,7 @@ public class LoginDAO {
 	public static List getOneUserH(String email) throws Exception{
         List results = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();;
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             String hql = "FROM logins WHERE email = '"+email+"'" ;
             Query query = session.createQuery(hql);
