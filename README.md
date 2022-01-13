@@ -32,18 +32,14 @@ Allow admins to provide feedback on what needs to be improved
 
 GETTING STARTED ============
 
-(include git clone command) (include all environment setup steps)
+$ git clone https://github.com/stitchineer/Project1-Reimbursement.git
 
-Be sure to include BOTH Windows and Unix command
-Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
-All the code required to get started
-Images of what it should look like
-Usage
+Import Maven Project into your favorite IDE
 
-Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
-Contributors
+Start app and navigate to the localhost port indicated
 
+Enjoy :)
 
-License
+LICENSE ====================
 
-This project uses the following license: <license_name>.
+GNU General Public License
