@@ -1,5 +1,4 @@
-# Project1-Reimbursement
-Scribby - Employee Reimbursement App
+SCRIBBY - EMPLOYEE REIMBURSEMENT APP
 
 DESCRIPTION
 
