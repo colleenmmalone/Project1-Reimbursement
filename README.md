@@ -1,6 +1,6 @@
 SCRIBBY - EMPLOYEE REIMBURSEMENT APP
 
-DESCRIPTION
+DESCRIPTION ===================
 
 This is an app that allows employees to submit reimbursement tickets for purchases they made as part of their work duties. The employees submit the total, purchase data, and category. The current date and a pending status are added automatically. The employee can delete a ticket that contains an error.
 The admin is able to approve or deny any pending tickets.
@@ -8,7 +8,7 @@ All users can change their personal information that is a non-primary key in the
 
 
 
-TECHNOLOGIES
+TECHNOLOGIES ================
 
 Postgres
 
@@ -20,16 +20,17 @@ Hibernate
 
 Features
 
-List of features ready and TODOs for future development
+FUTURE DEVELOPMENT ==========
 
-Awesome feature 1
-Awesome feature 2
-Awesome feature 3
-To-do list:
+Allow employees to edit tickets
 
-Wow improvement to be done 1
-Wow improvement to be done 2
-Getting Started
+Allow employees to make revisions on tickets after denial
+
+Allow employees to upload pictures of receipts
+
+Allow admins to provide feedback on what needs to be improved
+
+GETTING STARTED ============
 
 (include git clone command) (include all environment setup steps)
 
