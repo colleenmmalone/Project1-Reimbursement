@@ -2,6 +2,7 @@
 Scribby - Employee Reimbursement App
 
 DESCRIPTION
+
 This is an app that allows employees to submit reimbursement tickets for purchases they made as part of their work duties. The employees submit the total, purchase data, and category. The current date and a pending status are added automatically. The employee can delete a ticket that contains an error.
 The admin is able to approve or deny any pending tickets.
 All users can change their personal information that is a non-primary key in the database.
@@ -11,8 +12,11 @@ All users can change their personal information that is a non-primary key in the
 TECHNOLOGIES
 
 Postgres
+
 Java 8
+
 HTML 5 - CSS - JavaScript
+
 Hibernate
 
 Features
